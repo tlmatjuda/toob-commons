@@ -1,8 +1,8 @@
 package cli
 
 import (
-	"github.com/tlmatjuda/this-and-that/logs"
-	"github.com/tlmatjuda/this-and-that/text"
+	"github.com/tlmatjuda/toob-commons/logs"
+	"github.com/tlmatjuda/toob-commons/text"
 	"os"
 	"os/exec"
 )
