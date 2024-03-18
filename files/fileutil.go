@@ -20,20 +20,20 @@ func ReadContent(pathArg string) string {
 
 // Exists
 // Checks if a given file Exists on the file system
-func Exists(name string) bool {
-	info, err := os.Stat(name)
-	if os.IsNotExist(err) {
-		return false
+func Exists(path string) (bool, error) {
+	_, err := os.Stat(path)
+	if err == nil {
+		return true, nil
 	}
-	return !info.IsDir()
+	if os.IsNotExist(err) {
+		return false, nil
+	}
+	return false, err
 }
 
-func NotExists(name string) bool {
-	info, err := os.Stat(name)
-	if os.IsNotExist(err) {
-		return false
-	}
-	return !info.IsDir()
+func NotExists(path string) (bool, error) {
+	exists, err := Exists(path)
+	return !exists, err
 }
 
 // List

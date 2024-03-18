@@ -13,7 +13,7 @@ var Error = getError()
 var Warn = getWarn()
 
 func getInfo() *log.Logger {
-	return buildLogger("INFO  ")
+	return buildLogger("INFO ")
 }
 
 func getError() *log.Logger {
@@ -21,7 +21,7 @@ func getError() *log.Logger {
 }
 
 func getWarn() *log.Logger {
-	return buildLogger("WARN  ")
+	return buildLogger("WARN ")
 }
 
 // buildLogger
