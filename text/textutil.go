@@ -6,6 +6,12 @@ import (
 	"unicode"
 )
 
+const (
+	CHAR_FORWARD_SLASH = "/"
+	CHAR_BACK_SLASH    = "\\"
+	CHAR_FULL_STOP     = "."
+)
+
 // StringBlank
 // Strempty checks whether string contains only whitespace or not
 func StringBlank(s string) bool {
