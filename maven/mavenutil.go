@@ -2,11 +2,13 @@ package maven
 
 import (
 	"github.com/tlmatjuda/toob-commons/cli"
+	"github.com/tlmatjuda/toob-commons/logs"
 	"github.com/tlmatjuda/toob-commons/text"
 	"strings"
 )
 
 const (
+	Maven                  = "mvn"
 	Clean                  = "c"
 	Install                = "i"
 	Offline                = "o"
@@ -45,12 +47,12 @@ func Run(targetPath string, mavenOptions string, captureCmdOutput bool, logFileP
 		mavenCliFlags = append(mavenCliFlags, "-log-file="+logFilePath)
 	}
 
-	mavenCliFlags = append(mavenCliFlags, SingleThreadPerCPUCore)
+	logs.Info.Printf("Running command : [ %v ] %v", Maven, mavenCliFlags)
 
 	if captureCmdOutput {
-		consoleResponse = cli.Exec("mvn", mavenCliFlags, targetPath, captureCmdOutput)
+		consoleResponse = cli.Exec(Maven, mavenCliFlags, targetPath, captureCmdOutput)
 	} else {
-		cli.Exec("mvn", mavenCliFlags, targetPath, captureCmdOutput)
+		cli.Exec(Maven, mavenCliFlags, targetPath, captureCmdOutput)
 	}
 
 	return consoleResponse
