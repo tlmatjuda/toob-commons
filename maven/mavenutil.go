@@ -15,6 +15,7 @@ const (
 	Tests                  = "t"
 	SkipTests              = "-DskipTests=true"
 	SingleThreadPerCPUCore = "-T 1C"
+	PomFile                = "pom.xml"
 )
 
 func ExtractMavenArgs(args []string) (string, string) {
@@ -24,7 +25,6 @@ func ExtractMavenArgs(args []string) (string, string) {
 }
 
 func Run(targetPath string, mavenOptions string, captureCmdOutput bool, logFilePath string) string {
-	var consoleResponse string
 	var mavenCliFlags []string
 
 	if strings.Contains(mavenOptions, Clean) {
@@ -43,12 +43,22 @@ func Run(targetPath string, mavenOptions string, captureCmdOutput bool, logFileP
 		mavenCliFlags = append(mavenCliFlags, SkipTests)
 	}
 
+	return execute(targetPath, mavenCliFlags, captureCmdOutput, logFilePath)
+}
+
+func RunWithFlags(targetPath string, mavenCliFlags []string, captureCmdOutput bool, logFilePath string) string {
+	return execute(targetPath, mavenCliFlags, captureCmdOutput, logFilePath)
+}
+
+func execute(targetPath string, mavenCliFlags []string, captureCmdOutput bool, logFilePath string) string {
+
+	logs.Info.Printf("Running command : [ %v ] %v", Maven, mavenCliFlags)
+
 	if text.StringNotBlank(logFilePath) {
 		mavenCliFlags = append(mavenCliFlags, "-log-file="+logFilePath)
 	}
 
-	logs.Info.Printf("Running command : [ %v ] %v", Maven, mavenCliFlags)
-
+	var consoleResponse string
 	if captureCmdOutput {
 		consoleResponse = cli.Exec(Maven, mavenCliFlags, targetPath, captureCmdOutput)
 	} else {

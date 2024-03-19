@@ -1,4 +1,4 @@
-package files
+package fileio
 
 import (
 	"github.com/tlmatjuda/toob-commons/logs"
@@ -10,6 +10,10 @@ import (
 // ReadContent
 // Used to read file content, this will also convert the read bytes to String.
 func ReadContent(pathArg string) string {
+	if isSymbolicLink(pathArg) {
+		pathArg, _ = os.Readlink(pathArg)
+	}
+
 	content, err := os.ReadFile(pathArg)
 	if err != nil {
 		logs.Error.Fatal("Could not open file : ", err)
@@ -37,7 +41,7 @@ func NotExists(path string) (bool, error) {
 }
 
 // List
-// All the files in the given directory
+// All the fileio in the given directory
 func List(directory string) []os.FileInfo {
 
 	// Try open the directory
@@ -68,7 +72,7 @@ func ListByWildcard(directory string, suffix string) []string {
 }
 
 // RemoveAllFromDirectory
-// Remove all the files in the given directory,
+// Remove all the fileio in the given directory,
 // This takes advantage of the List function to list first and then remove.
 func RemoveAllFromDirectory(directory string) {
 	files := List(directory)
@@ -82,8 +86,8 @@ func RemoveAllFromDirectory(directory string) {
 }
 
 // Move
-// Takes in two Absolute path of the source and destination files.
-// It uses these to Copy the files over from one directory to anoother.
+// Takes in two Absolute path of the source and destination fileio.
+// It uses these to Copy the fileio over from one directory to anoother.
 func Move(source string, destination string) {
 	err := os.Rename(source, destination)
 	if err != nil {
@@ -92,7 +96,7 @@ func Move(source string, destination string) {
 }
 
 // Copy
-// Takes in two Absolute paths for the source and destination files.
+// Takes in two Absolute paths for the source and destination fileio.
 // These are used to copy from one file to another.
 func Copy(source string, destination string) {
 
@@ -129,4 +133,15 @@ func Pwd() string {
 		os.Exit(1)
 	}
 	return pwd
+}
+
+func isSymbolicLink(path string) bool {
+	// Get file information
+	fileInfo, err := os.Lstat(path)
+	if err != nil {
+		logs.Error.Fatal("Error getting file information:", err)
+	}
+
+	// Check if the file is a symbolic link
+	return fileInfo.Mode()&os.ModeSymlink != 0
 }
