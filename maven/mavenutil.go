@@ -51,12 +51,11 @@ func RunWithFlags(targetPath string, mavenCliFlags []string, captureCmdOutput bo
 }
 
 func execute(targetPath string, mavenCliFlags []string, captureCmdOutput bool, logFilePath string) string {
-
-	logs.Info.Printf("Running command : [ %v ] %v", Maven, mavenCliFlags)
-
 	if text.StringNotBlank(logFilePath) {
 		mavenCliFlags = append(mavenCliFlags, "-log-file="+logFilePath)
 	}
+
+	logs.Info.Printf("Running command : [ %v ] %v", Maven, mavenCliFlags)
 
 	var consoleResponse string
 	if captureCmdOutput {
