@@ -10,6 +10,7 @@ const (
 	CHAR_FORWARD_SLASH = "/"
 	CHAR_BACK_SLASH    = "\\"
 	CHAR_FULL_STOP     = "."
+	EMPTY              = ""
 )
 
 // StringBlank
