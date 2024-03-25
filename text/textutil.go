@@ -10,6 +10,7 @@ const (
 	CHAR_FORWARD_SLASH = "/"
 	CHAR_BACK_SLASH    = "\\"
 	CHAR_FULL_STOP     = "."
+	CHAR_ASTERIX       = "*"
 	EMPTY              = ""
 )
 
@@ -87,4 +88,8 @@ func NotEquals(textArg string, anotherTextArg string) bool {
 // Negates the EqualsIgnoreCase
 func NotEqualsIgnoreCase(textArg string, anotherTextArg string) bool {
 	return !EqualsIgnoreCase(textArg, anotherTextArg)
+}
+
+func Trim(textValue string) string {
+	return strings.TrimSpace(textValue)
 }
