@@ -85,6 +85,10 @@ func RemoveAllFromDirectory(directory string) {
 	}
 }
 
+func ExtractFolderNameFromPath(path string) string {
+	return filepath.Base(path)
+}
+
 // Move
 // Takes in two Absolute path of the source and destination fileio.
 // It uses these to Copy the fileio over from one directory to anoother.
