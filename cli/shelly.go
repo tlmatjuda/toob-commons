@@ -7,7 +7,10 @@ import (
 	"os/exec"
 )
 
-const CommandErrorTag = "Command Error : \n%s\n"
+const (
+	TargetShellInterpreter = "/bin/bash"
+	CommandErrorTag        = "Command Error : \n%s\n"
+)
 
 func Exec(command string, commandArgs []string, targetPath string, returnOutput bool) string {
 	var responseOutput string
@@ -38,4 +41,8 @@ func Exec(command string, commandArgs []string, targetPath string, returnOutput 
 	}
 
 	return responseOutput
+}
+
+func ExecBasScript(scriptPath string, targetPath string, returnOutput bool) string {
+	return Exec(TargetShellInterpreter, []string{scriptPath}, targetPath, returnOutput)
 }
