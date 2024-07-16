@@ -1,44 +1,44 @@
 # TOOB - ( Go Lang ) Commons
 
-
 This Go module is is a collction of various operations. </br>
-This includes : 
+This includes :
+
 * File IO operations.
 * Command Line Runner
 * Maven
 * Test / String
-</br>
-</br>
-
+  </br>
+  </br>
 
 ## TECH STACK
 
 The technology stack used in the project is :
 
-* Golang 1.22.5
+* Golang 1.22.x[](https://)
 * You can use any IDE of your choice.
-  
-</br>
-</br>
 
+</br>
+</br>
 
 ## SETTING UP
 
 You hav a choice of checking this repo our and using the Go Workspaces feature. </br>
-Or you can pull this module directly into your projects using : 
+Or you can pull this module directly into your projects using :
 
 ```go
 go get github.com/tlmatjuda/toob-commons
 ```
-</br>
-</br>
 
+</br>
+</br>
 
 ## USAGE / EXAPMLES
-### CLI 
+
+### CLI
 
 When you are inside your Go module and you need to execute a native commands on the respective Windows or Unix based OS. </br>
-The `bool` is for when you want to capture the command output into a string when set to `true`otherwise it will log out to console as normal. 
+The `bool` is for when you want to capture the command output into a string when set to `true`otherwise it will log out to console as normal.
+
 ```go
 // Defintion
 cli.Exec(command string, commandArgs []string, targetPath string, returnOutput bool) string {}
@@ -46,11 +46,13 @@ cli.Exec(command string, commandArgs []string, targetPath string, returnOutput b
 // Example
 cli.Exec("mvn", "clean install", "/project/folder/with/pom.xml", false)
 ```
+
 </br>
 
 ### File IO
 
-The FileIO Operations include : 
+The FileIO Operations include :
+
 ```go
 // Defintion
 // Exists
@@ -61,11 +63,13 @@ fileio.Exists(path string) (bool, error) {}
 // Example
 fileio.Exists("/path/of/the/file.txt")
 ```
+
 </br>
 
 ### Text
 
-The FileText / String Operations include : 
+The FileText / String Operations include :
+
 ```go
 // StringBlank
 // Strempty checks whether string contains only whitespace or not
@@ -79,8 +83,8 @@ text.StringBlank("Thabo Matjuda")
 text.StringBlank(" ")
 
 ```
-</br>
 
+</br>
 
 ## CONCLUSION
 
