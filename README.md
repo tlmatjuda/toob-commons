@@ -1,6 +1,7 @@
 # TOOB - ( Go Lang ) Commons
 
 This Go module is is a collction of various operations. </br>
+The idea is to have a centralized module that had all the commons operations you may need when working on a Go project _(  CLI tool, Web Application ... )_ </br>
 This includes :
 
 * File IO operations.
