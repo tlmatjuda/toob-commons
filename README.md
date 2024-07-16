@@ -14,7 +14,7 @@ This includes :
 
 The technology stack used in the project is :
 
-* Golang 1.22.x[](https://)
+* Golang 1.22.x
 * You can use any IDE of your choice.
 
 </br>
@@ -68,7 +68,7 @@ fileio.Exists("/path/of/the/file.txt")
 
 ### Text
 
-The FileText / String Operations include :
+The Text / String Operations include :
 
 ```go
 // StringBlank
@@ -80,6 +80,7 @@ text.StringBlank(s string) bool {}
 text.StringBlank("Thabo Matjuda")
 
 // OR
+
 text.StringBlank(" ")
 
 ```
