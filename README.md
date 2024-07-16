@@ -11,7 +11,7 @@ This includes :
 </br>
 
 
-## Tech Stack
+## TECH STACK
 
 The technology stack used in the project is :
 
@@ -22,7 +22,7 @@ The technology stack used in the project is :
 </br>
 
 
-## Setting Up
+## SETTING UP
 
 You hav a choice of checking this repo our and using the Go Workspaces feature. </br>
 Or you can pull this module directly into your projects using : 
@@ -34,7 +34,7 @@ go get github.com/tlmatjuda/toob-commons
 </br>
 
 
-## Usage / Examples
+## USAGE / EXAPMLES
 ### CLI 
 
 When you are inside your Go module and you need to execute a native commands on the respective Windows or Unix based OS. </br>
@@ -82,7 +82,7 @@ text.StringBlank(" ")
 </br>
 
 
-## Conclusion
+## CONCLUSION
 
 That's all. These are the operations I found important when building a few CLI tools with Go lang. </br>
 I will be adding more as we go.
