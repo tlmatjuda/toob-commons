@@ -1,15 +1,15 @@
 # TOOB - ( Go Lang ) Commons
 
-This Go module is is a collction of various operations. </br>
-The idea is to have a centralized module that had all the commons operations you may need when working on a Go project _(  CLI tool, Web Application ... )_ </br>
+This Go module is a collection of various operations. <br/>
+The idea is to have a centralized module that had all the commons operations you may need when working on a Go project _(  CLI tool, Web Application ... )_ <br/>
 This includes :
 
 * File IO operations.
 * Command Line Runner
 * Maven
-* Test / String
-  </br>
-  </br>
+* Text / String
+  <br/>
+  <br/>
 
 ## TECH STACK
 
@@ -18,27 +18,27 @@ The technology stack used in the project is :
 * Golang 1.22.x
 * You can use any IDE of your choice.
 
-</br>
-</br>
+<br/>
+<br/>
 
 ## SETTING UP
 
-You hav a choice of checking this repo our and using the Go Workspaces feature. </br>
+You have a choice of checking this repo out and using the Go Workspaces feature. <br/>
 Or you can pull this module directly into your projects using :
 
 ```go
 go get github.com/tlmatjuda/toob-commons
 ```
 
-</br>
-</br>
+<br/>
+<br/>
 
 ## USAGE / EXAPMLES
 
 ### CLI
 
-When you are inside your Go module and you need to execute a native commands on the respective Windows or Unix based OS. </br>
-The `bool` is for when you want to capture the command output into a string when set to `true`otherwise it will log out to console as normal.
+When you are inside your Go module and you need to execute a native commands on the respective Windows or Unix based OS. <br/>
+The `bool` is for when you want to capture the command output into a string when set to `true` otherwise it will log out to console as normal.
 
 ```go
 // Defintion
@@ -48,11 +48,11 @@ cli.Exec(command string, commandArgs []string, targetPath string, returnOutput b
 cli.Exec("mvn", "clean install", "/project/folder/with/pom.xml", false)
 ```
 
-</br>
+<br/>
 
 ### File IO
 
-The FileIO Operations include :
+The File IO Operations include :
 
 ```go
 // Defintion
@@ -65,7 +65,7 @@ fileio.Exists(path string) (bool, error) {}
 fileio.Exists("/path/of/the/file.txt")
 ```
 
-</br>
+<br/>
 
 ### Text
 
@@ -86,13 +86,13 @@ text.StringBlank(" ")
 
 ```
 
-</br>
+<br/>
 
 ## CONCLUSION
 
-That's all. These are the operations I found important when building a few CLI tools with Go lang. </br>
+That's all. These are the operations I found important when building a few CLI tools with Go lang. <br/>
 I will be adding more as we go.
 
-</br>
+<br/>
 </br
-></br>
+><br/>
