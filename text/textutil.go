@@ -12,6 +12,7 @@ const (
 	CHAR_FULL_STOP     = "."
 	CHAR_ASTERIX       = "*"
 	EMPTY              = ""
+	WHITE_SPACE        = " "
 )
 
 // StringBlank

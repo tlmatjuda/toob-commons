@@ -5,6 +5,7 @@ import (
 	"github.com/tlmatjuda/toob-commons/text"
 	"os"
 	"os/exec"
+	"strings"
 )
 
 const (
@@ -14,6 +15,7 @@ const (
 
 func Exec(command string, commandArgs []string, targetPath string, returnOutput bool) string {
 	var responseOutput string
+	logCommand(command, commandArgs)
 	var cmd = exec.Command(command, commandArgs...)
 
 	// Validate the input and see if there's something there
@@ -36,7 +38,8 @@ func Exec(command string, commandArgs []string, targetPath string, returnOutput 
 		cmd.Stderr = os.Stderr
 		err := cmd.Run()
 		if err != nil {
-			logs.Error.Fatalf(CommandErrorTag, err)
+			logs.Error.Printf(CommandErrorTag, err)
+			return text.EMPTY
 		}
 	}
 
@@ -45,4 +48,9 @@ func Exec(command string, commandArgs []string, targetPath string, returnOutput 
 
 func ExecBasScript(scriptPath string, targetPath string, returnOutput bool) string {
 	return Exec(TargetShellInterpreter, []string{scriptPath}, targetPath, returnOutput)
+}
+
+func logCommand(command string, commandArgs []string) {
+	result := strings.Join(commandArgs, text.WHITE_SPACE)
+	logs.Info.Printf("Running Native Command : %v %v", command, result)
 }
