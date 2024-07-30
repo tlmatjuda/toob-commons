@@ -14,8 +14,22 @@ const (
 )
 
 func Exec(command string, commandArgs []string, targetPath string, returnOutput bool) string {
+	return execCommand(command, commandArgs, targetPath, returnOutput, false)
+}
+
+func ExecWithNativeLog(command string, commandArgs []string, targetPath string, returnOutput bool) string {
+	return execCommand(command, commandArgs, targetPath, returnOutput, true)
+}
+
+func ExecScriptFile(scriptPath string, targetPath string, returnOutput bool) string {
+	return Exec(TargetShellInterpreter, []string{scriptPath}, targetPath, returnOutput)
+}
+
+func execCommand(command string, commandArgs []string, targetPath string, returnOutput bool, logCommand bool) string {
 	var responseOutput string
-	logCommand(command, commandArgs)
+	if logCommand {
+		logNativeCommand(command, commandArgs)
+	}
 	var cmd = exec.Command(command, commandArgs...)
 
 	// Validate the input and see if there's something there
@@ -46,11 +60,7 @@ func Exec(command string, commandArgs []string, targetPath string, returnOutput 
 	return responseOutput
 }
 
-func ExecBasScript(scriptPath string, targetPath string, returnOutput bool) string {
-	return Exec(TargetShellInterpreter, []string{scriptPath}, targetPath, returnOutput)
-}
-
-func logCommand(command string, commandArgs []string) {
+func logNativeCommand(command string, commandArgs []string) {
 	result := strings.Join(commandArgs, text.WHITE_SPACE)
 	logs.Info.Printf("Running Native Command : %v %v", command, result)
 }
