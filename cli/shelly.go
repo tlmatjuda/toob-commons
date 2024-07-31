@@ -42,7 +42,7 @@ func execCommand(command string, commandArgs []string, targetPath string, return
 
 	// Run the command and return the output./to
 	if returnOutput {
-		result, err := cmd.CombinedOutput()
+ 		result, err := cmd.CombinedOutput()
 		if err != nil {
 			logs.Error.Printf("Error for command [ %v ] with options : %v", command, commandArgs)
 		}

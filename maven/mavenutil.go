@@ -76,6 +76,11 @@ func CleanInstallSkipTestsLogFile(targetPath string, logFile string, captureCmdO
 	return execute(targetPath, mavenCleanInstallSkipTestskArgs, captureCmdOutput)
 }
 
+func BuildFailed(buildResponse string) bool {
+	return text.StringNotBlank(buildResponse) &&
+		strings.Contains(buildResponse, "BUILD FAILURE")
+}
+
 func execute(targetPath string, mavenCliFlags []string, captureCmdOutput bool) string {
 	var consoleResponse string
 	if captureCmdOutput {
