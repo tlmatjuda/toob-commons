@@ -13,6 +13,7 @@ const (
 	CHAR_ASTERIX       = "*"
 	EMPTY              = ""
 	WHITE_SPACE        = " "
+	COLON              = ":"
 )
 
 // StringBlank

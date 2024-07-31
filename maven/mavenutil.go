@@ -8,13 +8,18 @@ import (
 
 const (
 	Maven                  = "mvn"
-	Clean                  = "c"
-	Install                = "i"
+	CleanId                = "c"
+	InstallId              = "i"
 	Offline                = "o"
 	Tests                  = "t"
 	SkipTests              = "-DskipTests=true"
 	SingleThreadPerCPUCore = "-T 1C"
 	PomFile                = "pom.xml"
+)
+
+var (
+	mavenCleanInstallArgs           = []string{"clean", "install"}
+	mavenCleanInstallSkipTestskArgs = append(mavenCleanInstallArgs, SkipTests)
 )
 
 func ExtractMavenArgs(args []string) (string, string) {
@@ -26,11 +31,11 @@ func ExtractMavenArgs(args []string) (string, string) {
 func Run(targetPath string, mavenOptions string, captureCmdOutput bool, logFilePath string) string {
 	var mavenCliFlags []string
 
-	if strings.Contains(mavenOptions, Clean) {
+	if strings.Contains(mavenOptions, CleanId) {
 		mavenCliFlags = append(mavenCliFlags, "clean")
 	}
 
-	if strings.Contains(mavenOptions, Install) {
+	if strings.Contains(mavenOptions, InstallId) {
 		mavenCliFlags = append(mavenCliFlags, "install")
 	}
 
@@ -51,6 +56,24 @@ func Run(targetPath string, mavenOptions string, captureCmdOutput bool, logFileP
 
 func RunWithFlags(targetPath string, mavenCliFlags []string, captureCmdOutput bool) string {
 	return execute(targetPath, mavenCliFlags, captureCmdOutput)
+}
+
+func CleanInstall(targetPath string, captureCmdOutput bool) string {
+	return execute(targetPath, mavenCleanInstallArgs, captureCmdOutput)
+}
+
+func CleanInstallSkipTests(targetPath string, captureCmdOutput bool) string {
+	return execute(targetPath, mavenCleanInstallSkipTestskArgs, captureCmdOutput)
+}
+
+func CleanInstallLogFile(targetPath string, logFile string, captureCmdOutput bool) string {
+	mavenCleanInstallArgs = append(mavenCleanInstallArgs, "-log-file="+logFile)
+	return execute(targetPath, mavenCleanInstallArgs, captureCmdOutput)
+}
+
+func CleanInstallSkipTestsLogFile(targetPath string, logFile string, captureCmdOutput bool) string {
+	mavenCleanInstallSkipTestskArgs = append(mavenCleanInstallSkipTestskArgs, "-log-file="+logFile)
+	return execute(targetPath, mavenCleanInstallSkipTestskArgs, captureCmdOutput)
 }
 
 func execute(targetPath string, mavenCliFlags []string, captureCmdOutput bool) string {
