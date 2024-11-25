@@ -7,10 +7,13 @@ import (
 )
 
 const (
+	CHAR_COLON         = ":"
+	CHAR_TILDE         = "~"
 	CHAR_FORWARD_SLASH = "/"
 	CHAR_BACK_SLASH    = "\\"
 	CHAR_FULL_STOP     = "."
 	CHAR_ASTERIX       = "*"
+	HOME_DIR_SHORTHAND = CHAR_TILDE + CHAR_FORWARD_SLASH
 	EMPTY              = ""
 	WHITE_SPACE        = " "
 )

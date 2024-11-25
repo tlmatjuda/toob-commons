@@ -1,6 +1,7 @@
 package fileio
 
 import (
+	"fmt"
 	"github.com/tlmatjuda/toob-commons/logs"
 	"io"
 	"os"
@@ -80,9 +81,32 @@ func RemoveAllFromDirectory(directory string) {
 		fullLogFilePath := directory + "/" + file.Name()
 		err := os.Remove(fullLogFilePath)
 		if err != nil {
-			logs.Error.Fatalf("Could not delete file : v%", fullLogFilePath)
+			logs.Error.Fatalf("Could not delete file : [ v% ]", err)
 		}
 	}
+}
+
+// RemoveAllFromDirectoryRecursively
+// Remove all the fileio in the given directory,
+// This takes advantage of the List function to list first and then remove.
+// We also remove recursively, meaning when we have sub folders that are not empty
+func RemoveAllFromDirectoryRecursively(directory string) error {
+	// Walk through the directory tree
+	return filepath.WalkDir(directory, func(path string, d os.DirEntry, err error) error {
+		if err != nil {
+			return fmt.Errorf("error accessing path %s: %v", path, err)
+		}
+		if path == directory {
+			return nil // Skip the root directory itself
+		}
+
+		// Remove the file or directory
+		err = os.RemoveAll(path)
+		if err != nil {
+			return fmt.Errorf("failed to remove %s: %v", path, err)
+		}
+		return nil
+	})
 }
 
 func ExtractFolderNameFromPath(path string) string {
