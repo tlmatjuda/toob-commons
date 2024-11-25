@@ -37,9 +37,12 @@ func execCommand(command string, commandArgs []string, targetPath string, return
 		cmd.Dir = targetPath
 	}
 
+	// Set the TERM environment variable to support colors
+	cmd.Env = append(os.Environ(), "TERM=xterm-256color")
+
 	// Run the command and return the output./to
 	if returnOutput {
-		result, err := cmd.CombinedOutput()
+ 		result, err := cmd.CombinedOutput()
 		if err != nil {
 			logs.Error.Printf("Error for command [ %v ] with options : %v", command, commandArgs)
 		}

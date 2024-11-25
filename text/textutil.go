@@ -16,6 +16,7 @@ const (
 	HOME_DIR_SHORTHAND = CHAR_TILDE + CHAR_FORWARD_SLASH
 	EMPTY              = ""
 	WHITE_SPACE        = " "
+	COLON              = ":"
 )
 
 // StringBlank
