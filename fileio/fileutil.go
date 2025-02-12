@@ -163,6 +163,19 @@ func Pwd() string {
 	return pwd
 }
 
+// HomePath
+// Used to get the Home Path on a Machine.
+func HomePath() string {
+	home, err := os.UserHomeDir()
+	if err != nil {
+		logs.Error.Fatal("Error getting file information:", err)
+	}
+
+	return home
+}
+
+// isSymbolicLink
+// Checks if File is actual file of Symbolic Link to a File Somewhere else.
 func isSymbolicLink(path string) bool {
 	// Get file information
 	fileInfo, err := os.Lstat(path)
