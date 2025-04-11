@@ -20,6 +20,7 @@ const (
 var (
 	mavenCleanInstallArgs           = []string{"clean", "install"}
 	mavenCleanInstallSkipTestskArgs = append(mavenCleanInstallArgs, SkipTests)
+	mavenSpotlessApplyArgs          = []string{"spotless:apply"}
 )
 
 func ExtractMavenArgs(args []string) (string, string) {
@@ -74,6 +75,16 @@ func CleanInstallLogFile(targetPath string, logFile string, captureCmdOutput boo
 func CleanInstallSkipTestsLogFile(targetPath string, logFile string, captureCmdOutput bool) string {
 	mavenCleanInstallSkipTestskArgs = append(mavenCleanInstallSkipTestskArgs, "-log-file="+logFile)
 	return execute(targetPath, mavenCleanInstallSkipTestskArgs, captureCmdOutput)
+}
+
+// SPOTLESS:APPLICY SECTION
+func SpotlessApply(targetPath string, captureCmdOutput bool) string {
+	return execute(targetPath, mavenSpotlessApplyArgs, captureCmdOutput)
+}
+
+func SpotlessApplyLogFile(targetPath string, logFile string, captureCmdOutput bool) string {
+	mavenSpotlessApplyArgs = append(mavenSpotlessApplyArgs, "-log-file="+logFile)
+	return execute(targetPath, mavenSpotlessApplyArgs, captureCmdOutput)
 }
 
 func BuildFailed(buildResponse string) bool {
